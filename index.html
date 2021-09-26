@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/styles/style.css">
+        <link rel="stylesheet" href="/static/styles/dd.css">
+       
+        <title>Project </title>
+    </head>
+    <body>
+        <div class="web_head", text><h1>Ross Miller spotify discovery app</h1></div>
+        <ul class="tree">
+            {% for artist in lst %}
+                <li class="section">
+                    <input type="checkbox" id="{{artist}}"/>
+                    <label for="{{artist}}">{{artist}}</label>
+                    <ul>
+                        <li><img src="{{lst[artist]['artist_image']}}" alt="{{artist}} image" width="150" height="150"></li>
+                        {% for song in lst[artist]['songs'] %}
+                            <li class="section">
+                                <input type="checkbox" id="{{song}}"/>
+                                <label for="{{song}}">{{song}}</label>
+                                <ul>
+                                <li><img src="{{lst[artist]['songs'][song]['image']}}" alt="Song Art" width="250" height="250"></li>
+                                <li>
+                                    <figure>
+                                        <div class="fig", text>
+                                            <figcaption>
+                                                Listen to {{song}} preview
+                                            </figcaption>
+                                        </div>
+                                        <audio controls>
+                                            <source src="{{lst[artist]['songs'][song]['song_url']}}">
+                                        </audio>
+                                    </figure>
+                                </li>
+                                <li><a href="{{lst[artist]['songs'][song]['genius_link']}}" target="_blank">Lyrics</a></li>
+                                </ul>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
